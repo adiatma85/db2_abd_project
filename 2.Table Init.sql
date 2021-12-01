@@ -22,12 +22,22 @@ CREATE TABLE CAR_RENTAL_SCHEMA.CUSTOMER(
     DRIVER_LICENSE_NUMBER VARCHAR(13) NOT NULL,
     EMAIL VARCHAR(255) NOT NULL,
     PHONE VARCHAR(12) NULL
-
-    -- Unique Index
---    UNIQUE INDEX `driver_license_number_UNIQUE` (`driver_license_number` ASC),
---    UNIQUE INDEX `email_UNIQUE` (`email` ASC)
 )
 IN REG_HOT1
 INDEX IN IDX_HOT1
 LONG IN LOB_HOT1;
 
+-- Table Vehicle
+CREATE TABLE CAR_RENTAL_SCHEMA.VEHICLE (
+    ID_VEHICLE INT NOT NULL PRIMARY KEY,
+    brand VARCHAR(45) NOT NULL,
+    model VARCHAR(45) NOT NULL,
+    model_year INT NOT NULL,
+    mileage INT  NOT NULL,
+    color VARCHAR(45) NOT NULL,
+    vehicle_type_id INT NOT NULL,
+    current_location_id INT NOT NULL
+)
+IN REG_HOT1
+INDEX IN IDX_HOT1
+LONG IN LOB_HOT1;
