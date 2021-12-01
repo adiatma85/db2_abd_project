@@ -1,0 +1,7 @@
+CREATE PROCEDURE ADD_DATA_LOCATION(IN IN_ID_LOCATION, IN IN_street_address, IN IN_city, IN IN_state, IN IN_zipcode)
+	DYNAMIC RESULT SETS 1
+	P1: BEGIN
+		INSERT INTO DEPARTMENT VALUES (IN_ID_LOCATION, IN_street_address, IN_city, IN_state, IN_zipcode);
+	END P1;
+
+CALL ADD_DATA_LOCATION(9, '7002 E 16th St', 'Houston', 'TX', 77084);
