@@ -1,11 +1,19 @@
-CREATE FUNCTION RENTAL_BY_PICKUP_AND_DROPOFF(pickup_date DATE, dropoff_date DATE) 
+CREATE OR REPLACE FUNCTION CAR_RENTAL_SCHEMA.RENTAL_BY_DROPOFF(dropoff_date DATE) 
     RETURNS TABLE (
         CUSTOMER_NAME VARCHAR(100), 
         CAR_TYPE VARCHAR(50), 
         FUEL_OPTION VARCHAR(50), 
         PICKUP_LOC VARCHAR(80), 
         DROPOFF_LOC VARCHAR(80)
-        ) BEGIN ATOMIC
+        )
+        BEGIN ATOMIC
+        DECLARE pickup_date DATE;
+        DECLARE dropoff_date DATE;
+        DECLARE CUSTOMER_NAME VARCHAR(100);
+        DECLARE CAR_TYPE VARCHAR(50);
+        DECLARE FUEL_OPTION VARCHAR(50); 
+        DECLARE PICKUP_LOC VARCHAR(80);
+        DECLARE DROPOFF_LOC VARCHAR(80);
         RETURN
                SELECT CONCAT(CONCAT(c.first_name, ', '), c.last_name) AS "Customer Name",
        vt.name AS "Car Type",
@@ -24,8 +32,5 @@ CREATE FUNCTION RENTAL_BY_PICKUP_AND_DROPOFF(pickup_date DATE, dropoff_date DATE
        CAR_RENTAL_SCHEMA.location l1 ON r.pickup_location_id = l1.id_location
        JOIN
        CAR_RENTAL_SCHEMA.location l2 ON r.drop_off_location_id = l2.id_location
-                WHERE
-                    r.start_date = pickup_date
-                    AND
-                    r.end_date = end_date;
+                WHERE r.end_date = end_date;
         END@
