@@ -7,7 +7,6 @@ CREATE OR REPLACE FUNCTION CAR_RENTAL_SCHEMA.RENTAL_BY_DROPOFF(dropoff_date DATE
         DROPOFF_LOC VARCHAR(80)
         )
         BEGIN ATOMIC
-        DECLARE pickup_date DATE;
         DECLARE dropoff_date DATE;
         DECLARE CUSTOMER_NAME VARCHAR(100);
         DECLARE CAR_TYPE VARCHAR(50);
@@ -32,5 +31,5 @@ CREATE OR REPLACE FUNCTION CAR_RENTAL_SCHEMA.RENTAL_BY_DROPOFF(dropoff_date DATE
        CAR_RENTAL_SCHEMA.location l1 ON r.pickup_location_id = l1.id_location
        JOIN
        CAR_RENTAL_SCHEMA.location l2 ON r.drop_off_location_id = l2.id_location
-                WHERE r.end_date = end_date;
+                WHERE r.end_date = dropoff_date;
         END@
